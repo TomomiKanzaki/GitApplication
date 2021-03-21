@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="vm"
+            type="com.example.gitapplication.ui.project.ProjectViewModel" />
+    </data>
+
+    <FrameLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
+            app:refreshing="@{vm.isPullToRefresh()}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/loading_project"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="loading..."
+                    android:textAlignment="center"
+                    android:visibility="@{vm.isLoading ? View.VISIBLE: View.GONE}"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:orientation="vertical"
+                    android:visibility="@{vm.isLoading ? View.GONE: View.VISIBLE}">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="150dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/github"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="タイトル"
+                        android:textStyle="bold"
+                        android:textSize="25sp"
+                        android:text="@{vm.projectLiveData.name}"
+                        android:paddingBottom="5dp"/>
+
+                    <TextView
+                        android:id="@+id/project_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="project description"
+                        android:textSize="20sp"
+                        android:text="@{vm.projectLiveData.description}"/>
+
+                    <TextView
+                        android:id="@+id/languages"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="project language"
+                        android:textSize="16sp"
+                        android:text="@{String.format(@string/languages, vm.projectLiveData.language)}"/>
+
+                    <TextView
+                        android:id="@+id/project_watchers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="project watchers"
+                        android:textSize="16sp"
+                        android:text="@{String.format(@string/watchers, vm.projectLiveData.watchers)}"/>
+
+                    <TextView
+                        android:id="@+id/project_open_issues"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="open issues"
+                        android:textSize="16sp"
+                        android:text="@{String.format(@string/openIssues, vm.projectLiveData.open_issues)}"/>
+
+
+                    <TextView
+                        android:id="@+id/project_created_at"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@null"
+                        android:textSize="16sp"
+                        android:text="@{String.format(@string/created_at, vm.projectLiveData.created_at)}"/>
+
+                    <TextView
+                        android:id="@+id/project_updated_at"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@null"
+                        android:textSize="16sp"
+                        android:text="@{String.format(@string/updated_at, vm.projectLiveData.updated_at)}"/>
+
+                    <TextView
+                        android:id="@+id/clone_url"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="open issues"
+                        android:textSize="16sp"
+                        android:text="@{String.format(@string/clone_url, vm.projectLiveData.clone_url)}"/>
+
+                </LinearLayout>
+            </FrameLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </FrameLayout>
+</layout>

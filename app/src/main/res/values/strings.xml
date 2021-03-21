@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">GitApplication</string>
+    <string name="watchers">%d watchers</string>
+    <string name="languages">プログラミング言語: %s</string>
+    <string name="openIssues">Open Issues: %s</string>
+    <string name="created_at">作った時間: %s</string>
+    <string name="updated_at">最後にアップデートされた時間: %s</string>
+    <string name="clone_url">CloneするURL: %s</string>
+
+</resources>
