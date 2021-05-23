@@ -23,6 +23,7 @@ class ProjectAdapter(private var clickCallback: (projectId: String) -> Unit?) :
             this.projectList = projectList
             notifyItemRangeInserted(0, projectList.size)
         } else {
+            loadMoreListener?.loading = false
             val insertPosition = projectList.size
             this.projectList = projectList
             notifyItemInserted(insertPosition)

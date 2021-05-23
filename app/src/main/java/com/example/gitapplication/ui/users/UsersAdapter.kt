@@ -32,6 +32,7 @@ class UsersAdapter(
             this.usersList = usersList
             notifyItemRangeInserted(0, usersList.size)
         } else {
+            loadMoreListener?.loading = false
             val insertPosition = usersList.size
             this.usersList = usersList
             notifyItemInserted(insertPosition)
